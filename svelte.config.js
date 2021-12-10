@@ -1,3 +1,4 @@
+import mm from 'micromatch';
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 
