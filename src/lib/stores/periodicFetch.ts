@@ -12,7 +12,7 @@ type PeriodicFetchStore<T> = {
 
 function periodicFetch<Payload>(url: string, interval: number = 5000): PeriodicFetchStore<Payload> {
 	let intervalId;
-	const { update, subscribe } = writable({ status: 'loading' }, () => {
+	const { update, subscribe } = writable<Content<Payload>>({ data: undefined, status: 'loading', message: '' }, () => {
 		return () => {
 			clearInterval(intervalId);
 		};
@@ -24,7 +24,7 @@ function periodicFetch<Payload>(url: string, interval: number = 5000): PeriodicF
 				update((current) => ({ ...current, status: 'loading' }));
 				const response = await fetch(url);
 				const data = await response.json()
-				update((current) => ({ ...current, status: 'done' }));
+				update((current) => ({ ...current, data, status: 'done' }));
 			}, interval);
 		}
 	}
