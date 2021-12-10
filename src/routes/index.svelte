@@ -1,5 +1,5 @@
 <script lang="ts">
-	import periodicFetch from '$lib/stores/periodicFetch'
+	import periodicFetch from '$lib/store/periodicFetch'
 	
 	let url = "https://www.swapi.tech/api/people/";
 	

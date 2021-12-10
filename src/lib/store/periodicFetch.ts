@@ -1,9 +1,9 @@
 import { Writable, writable } from 'svelte/store';
 
 type Content<T> = {
-	data: T;
+	data?: T;
 	status: 'done' | 'loading' | 'error';
-	message: String;
+	message?: String;
 };
 
 type PeriodicFetchStore<T> = {
