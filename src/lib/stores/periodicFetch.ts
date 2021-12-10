@@ -1,7 +1,7 @@
-import { type Writable, writable } from 'svelte/store';
+import { Writable, writable } from 'svelte/store';
 
 type Content<T> = {
-	data: T | Object;
+	data: T;
 	status: 'done' | 'loading' | 'error';
 	message: String;
 };
@@ -23,7 +23,8 @@ function periodicFetch<Payload>(url: string, interval: number = 5000): PeriodicF
 			intervalId = setInterval(async () => {
 				update((current) => ({ ...current, status: 'loading' }));
 				const response = await fetch(url);
-				update((current) => ({ ...current, data: await response.json(), status: 'loading' }));
+				const data = await response.json()
+				update((current) => ({ ...current, status: 'done' }));
 			}, interval);
 		}
 	}

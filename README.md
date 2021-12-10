@@ -1,38 +1,39 @@
-# create-svelte
+# Svelte Society Utilities
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+A library of utilities, actions, components and stores for your Svelte projects
 
-## Creating a project
+## Usage
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Stores
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+#### periodicFetch
 
-# create a new project in my-app
-npm init svelte@next my-app
+This custom store will re-fetch from a URL every N (default 5000ms) seconds. Pass in `url` and `time`.
+```svelte
+<script lang="ts">
+	import periodicFetch from '$lib/stores/periodicFetch'
+	
+	let url = "https://www.swapi.tech/api/people/";
+	
+	type Person = {
+		uid: String,
+		name: String,
+		url: String
+	}
+	
+	type People = {
+		message: String,
+		total_records: Number,
+		total_pages: Number,
+		previous: String | null,
+		next: String,
+		results: Array<Person>
+	}
+	
+	const starWarsPeople = periodicFetch(url)
+</script>
+
+<h1>Svelte Society Utilities</h1>
+<h2>Periodic Fetch</h2>
+<pre>{JSON.stringify($starWarsPeople, undefined, 2)}</pre>
 ```
-
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
