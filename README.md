@@ -11,7 +11,7 @@ A library of utilities, actions, components and stores for your Svelte projects
 This custom store will re-fetch from a URL every N (default 5000ms) seconds. Pass in `url` and `time`.
 ```svelte
 <script>
-	import periodicFetch from '$lib/stores/periodicFetch'
+	import { periodicFetch } from 'sveltesociety/store'
 	const url = "https://www.swapi.tech/api/people/";
 	
 	const starWarsPeople = periodicFetch(url)
