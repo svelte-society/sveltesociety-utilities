@@ -20,4 +20,4 @@ This custom store will re-fetch from a URL every N (default 5000ms) seconds. Pas
 <pre>{JSON.stringify($starWarsPeople, undefined, 2)}</pre>
 ```
 
-(REPL Example)[]
+[REPL Example](https://svelte.dev/repl/c491ee1fd52c401baf9fe1fa5e6e3adc?version=3.44.2)
